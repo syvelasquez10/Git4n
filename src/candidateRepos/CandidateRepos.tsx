@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { DataGrid, ColDef } from '@material-ui/data-grid';
 import { Card, CardContent, CardHeader, CircularProgress } from '@material-ui/core';
 import './CandidateRepos.css';
+import SearchField from '../shared/SearchField';
 
 interface CandidateReposProps {
 	infoForm: string[];
@@ -10,6 +11,7 @@ const CandidateRepos: FC<CandidateReposProps> = ({infoForm}) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [repos, setRepos] = useState([]);
+  const [originalRepos, setOriginalRepos] = useState([]);
 
   useEffect(() => {
     fetch(`https://api.github.com/users/${infoForm[3]}/repos`)
@@ -21,6 +23,7 @@ const CandidateRepos: FC<CandidateReposProps> = ({infoForm}) => {
             setError(result.message);
           } else {
             setRepos(result);
+            setOriginalRepos(result);
           }
           setIsLoaded(true);
         },
@@ -41,11 +44,11 @@ const CandidateRepos: FC<CandidateReposProps> = ({infoForm}) => {
   ));
 
   const columns: ColDef[] = [
-    { field: 'name', headerName: 'Nombre', flex: 1},
-    { field: 'language', headerName: 'Lenguaje', flex: 1},
-    { field: 'branch', headerName: 'Branch por defecto', flex: 1},
-    { field: 'url', headerName: 'Url Git', flex: 2},
-    { field: 'description', headerName: 'Descripción', flex: 2},
+    { field: 'name', headerName: 'Nombre', width: 150},
+    { field: 'language', headerName: 'Lenguaje', width: 150},
+    { field: 'branch', headerName: 'Branch por defecto', width: 150},
+    { field: 'url', headerName: 'Url Git', width: 250},
+    { field: 'description', headerName: 'Descripción', width: 300},
   ];
 
   const render = () => {
@@ -65,9 +68,10 @@ const CandidateRepos: FC<CandidateReposProps> = ({infoForm}) => {
       <CardHeader
         title="Repositorios del candidato"
       />
-    <CardContent className="candidate-repos-content">
-      {render()}
-    </CardContent>
+      <SearchField repos={repos} originalRepos={originalRepos} setRepos={setRepos} />
+      <CardContent className="candidate-repos-content">
+        {render()}
+      </CardContent>
     </Card>
   );
 };
