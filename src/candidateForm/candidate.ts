@@ -53,7 +53,7 @@ export const formInputs: FormInputsType = {
         value: "",
         label: "Cédula",
         id: "input-id",
-        type: 'text',
+        type: 'number',
         shrink: false,
         error: false
     },

@@ -1,13 +1,15 @@
 import { Button, Card, CardActions, CardContent, CardHeader, Icon } from '@material-ui/core';
 import React, { FC, FormEvent, useState } from 'react';
+import { infoFormValue } from '../shared/cookieManager';
 import { formInputs } from './candidate';
 import './CandidateForm.css'
 import FormField from './formField/FormField';
 
 interface CandidateFormProps {
-  setDialog: (isVisible: boolean) => void;
+	setDialog: (isVisible: boolean) => void;
+	setInfoForm: (infoForm: string[]) => void;
 }
-const CandidateForm: FC<CandidateFormProps> = ({ setDialog }) => {
+const CandidateForm: FC<CandidateFormProps> = ({ setDialog, setInfoForm }) => {
 	const [inputs, setInputs] = useState(formInputs);
 
 	const handleSubmit = (evt: FormEvent<HTMLFormElement> ) => {
@@ -19,6 +21,7 @@ const CandidateForm: FC<CandidateFormProps> = ({ setDialog }) => {
 			inputsList.forEach((input, index) => {
 				input.value = "";
 			});
+			setInfoForm(infoFormValue())
 			setDialog(true);
 		} else {
 			inputsList.forEach((input, index) => {

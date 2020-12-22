@@ -1,38 +1,41 @@
 import { Card, CardContent, CardHeader, Grid } from '@material-ui/core';
-import React, { Fragment } from 'react';
+import React, { FC, Fragment } from 'react';
 import { formInputs } from '../candidateForm/candidate';
-import { infoForm } from '../shared/cookieManager';
 import './CandidateInfo.css';
 
-const CandidateInfo = () => {
+interface CandidateInfoProps {
+	infoForm: string[];
+}
+const CandidateInfo: FC<CandidateInfoProps> = ({infoForm}) => {
 
-  const gridElements = infoForm.map((element, index) => (
-    <Fragment key={index}>
-      <Grid item xs={6}>
-      <strong>{Object.values(formInputs)[index].label + ": "}</strong>{element}
-    </Grid>
-    </Fragment>)
-  );
-  
-  const candidateInfo = ()=> {
+  const gridElements = ()=> {
     if(infoForm.length > 5) {
-      return (
-      <Card className="header">
-        <CardHeader
-          title="Información del candidato"
-        />
-        <CardContent className="card__content">
-          <Grid container spacing={3}>
-          {gridElements}
+      return infoForm.map((element, index) => (
+          <Fragment key={index}>
+            <Grid item xs={6}>
+            <strong>{Object.values(formInputs)[index].label + ": "}</strong>{element}
           </Grid>
-        </CardContent>
-      </Card>);
+          </Fragment>
+        )
+      );
     } else {
-      return <></>
+      return <div className="candidate-info-error">No se ha guardado ningún candidato</div>;
     }
   };
-  
-  return candidateInfo();
+    
+    
+  return (
+    <Card className="header">
+      <CardHeader
+        title="Información del candidato"
+      />
+      <CardContent className="card-content">
+        <Grid container spacing={3}>
+        {gridElements()}
+        </Grid>
+      </CardContent>
+    </Card>
+  );
 };
 
 export default CandidateInfo;
