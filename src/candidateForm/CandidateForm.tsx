@@ -34,16 +34,16 @@ const CandidateForm: FC<CandidateFormProps> = ({ setDialog }) => {
 	
 	return (
 		<div className="candidate-form">
-			<Card>
+			<Card className="candidate-form-card">
 			<CardHeader
         title="Formulario de candidatos"
         subheader="September 14, 2016"
       />
 			<form noValidate autoComplete="off" onSubmit={handleSubmit}>
-      	<CardContent>
+      	<CardContent className="candidate-form-card-content">
 					<FormField inputs={inputs} setInputs={setInputs} />
 				</CardContent>
-				<CardActions>
+				<CardActions className="candidate-form-card-actions">
 					<Button
 						variant="contained"
 						color="primary"

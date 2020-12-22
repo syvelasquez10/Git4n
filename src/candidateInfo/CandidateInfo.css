@@ -1,0 +1,16 @@
+.header {
+    width: 60%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 660px) {
+    .header {
+        width: 95%;
+    }
+}
+
+.card-content {
+    display: flex;
+    justify-content: center;
+}

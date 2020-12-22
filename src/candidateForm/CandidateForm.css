@@ -8,7 +8,7 @@
     }
 }
 
-.MuiCard-root {
+.candidate-form-card {
     padding: 2%;
 }
 
@@ -18,7 +18,7 @@ form {
     justify-content: center;
 }
 
-.MuiCardContent-root {
+.candidate-form-card-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -30,7 +30,7 @@ form {
     margin-right: 10px !important;
 }
 
-.MuiCardActions-root {
+.candidate-form-card-content {
     width: 100%;
     display: flex;
     flex-direction: row-reverse;

@@ -21,4 +21,4 @@ const SimpleDialog = ({ onClose, open }: SimpleDialogProps) => {
     );
 };
 
-export default SimpleDialog
+export default SimpleDialog;
