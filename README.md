@@ -10,7 +10,7 @@ For the layout I used the following tools:
 - CSS3 (In a separate file, to keep apart the responsibilities of each file)
 - [Material UI](https://material-ui.com/)
 
-Installation
+Installation and Running
 -------------
 To install and run the application execute the following commands:
 
@@ -22,3 +22,11 @@ npm start
 ```
 
 The application will be served on localhost:3000
+
+Test
+-------------
+To run the test execute the following command:
+
+```bash
+npm run test
+```
