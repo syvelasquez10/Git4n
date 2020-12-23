@@ -58,6 +58,11 @@ const CandidateRepos: FC<CandidateReposProps> = ({ infoForm }) => {
             No se ha guardado ningún candidato del que se puedan ver repositorios de GitHub
           </div>
         )}
+        {isLoaded && infoForm[3] && repos.length === 0 && (
+          <div className="candidate-repos-error">
+            No hay repositorios que contengan esos caracteres en su nombre
+          </div>
+        )}
         {isLoaded && repos.length > 0 && <DataGrid rows={loadRows()} columns={columns} pageSize={5} />}
         {isLoaded && error && <div className="candidate-repos-error">{error}</div>}
         {!isLoaded && <CircularProgress className="candidate-repos-progress" />}
