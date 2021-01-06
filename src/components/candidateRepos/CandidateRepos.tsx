@@ -17,17 +17,21 @@ const CandidateRepos: FC<CandidateReposProps> = ({ infoForm }) => {
   const [originalRepos, setOriginalRepos] = useState(emptyRepos);
 
   useEffect(() => {
-    getRepository(infoForm[3]).then(
-      (result) => {
-        setRepos(result);
-        setOriginalRepos(result);
-        setIsLoaded(true);
-      },
-      (_) => {
-        setError('Hubo un problema cargando los datos de GitHub');
-        setIsLoaded(true);
-      },
-    );
+    if(infoForm[3]) {
+      getRepository(infoForm[3]).then(
+        (result) => {
+          setRepos(result);
+          setOriginalRepos(result);
+          setIsLoaded(true);
+        },
+        (_) => {
+          setError('Hubo un problema cargando los datos de GitHub');
+          setIsLoaded(true);
+        },
+      );
+    } else {
+      setIsLoaded(true);
+    }
   }, [infoForm]);
 
   const loadRows = () =>
@@ -51,7 +55,7 @@ const CandidateRepos: FC<CandidateReposProps> = ({ infoForm }) => {
   return (
     <Card className="candidate-repos">
       <CardHeader title="Repositorios del candidato" />
-      <SearchField repos={repos} originalRepos={originalRepos} setRepos={setRepos} />
+      {isLoaded && repos.length > 0  && <SearchField repos={repos} originalRepos={originalRepos} setRepos={setRepos} /> }
       <CardContent className="candidate-repos-content">
         {isLoaded && !infoForm[3] && (
           <div className="candidate-repos-error">
